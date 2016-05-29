@@ -3,10 +3,7 @@
 use Aedart\React\Demo\Containers\IoC;
 use Aedart\React\Demo\Traits\EventLoop;
 use Aedart\React\Demo\Traits\ServiceContainer;
-use Illuminate\Container\Container;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Facade;
-use React\EventLoop\Factory;
+use React\EventLoop\Factory as EventLoopFactory;
 use React\EventLoop\LoopInterface;
 
 /**
@@ -15,7 +12,7 @@ use React\EventLoop\LoopInterface;
  * @author Alin Eugen Deac <aedart@gmail.com>
  * @package Aedart\React\Demo
  */
-class Application
+abstract class Application
 {
     use ServiceContainer;
     use EventLoop;
@@ -28,12 +25,12 @@ class Application
 
     public function run()
     {
-        $loop = $this->getEventLoop();
+        $this->setupApplication();
 
-        // Here we normally would start a Http server
-        // or other service, e.g. sockets... etc.
-        $loop->tick();
+        $this->getEventLoop()->run();
     }
+
+    abstract public function setupApplication();
 
     /**
      * Init the service container
@@ -54,7 +51,7 @@ class Application
 
         // React Event loop
         $ioc->singleton(LoopInterface::class, function($ioc){
-            return Factory::create();
+            return EventLoopFactory::create();
         });
     }
 
