@@ -8,5 +8,5 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/../../autoload.php';
 }
 
-$app = new \Aedart\React\Demo\Application();
+$app = new \Aedart\React\Demo\DNSExample();
 $app->run();
