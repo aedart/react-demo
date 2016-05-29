@@ -1,0 +1,37 @@
+{
+    "name": "aedart/react-demo",
+    "description": "Demo of a react php. Attempting to test a more traditional MVC kind of structure.",
+    "keywords": [
+        "React",
+        "Promise",
+        "MVC"
+    ],
+    "homepage": "https://github.com/aedart/react-demo",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Alin Eugen Deac",
+            "email": "aedart@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+        "codeception/codeception": "~2.1",
+        "fzaninotto/faker": "~1.5",
+        "mockery/mockery": "~0.9",
+        "aedart/license": "1.*",
+        "aedart/license-file-manager": "~1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aedart\\React\\Demo\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "scripts": {
+        "post-update-cmd": "vendor/bin/license-manager license:copy vendor/aedart/license/aedart/BSD-3-Clause"
+    }
+}
