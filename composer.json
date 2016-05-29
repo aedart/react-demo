@@ -19,7 +19,8 @@
         "php": ">=5.5.9",
         "react/react": "0.4.*",
         "illuminate/container": "5.2.*",
-        "illuminate/support": "5.2.*"
+        "illuminate/support": "5.2.*",
+        "illuminate/events": "5.2.*"
     },
     "require-dev": {
         "codeception/codeception": "~2.1",
