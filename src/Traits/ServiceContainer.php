@@ -56,7 +56,7 @@ trait ServiceContainer
      */
     public function getDefaultContainer()
     {
-        return App::getFacadeRoot();
+        return App::getFacadeApplication();
     }
 
     /**
