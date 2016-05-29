@@ -1,5 +1,6 @@
 <?php namespace Aedart\React\Demo\Traits;
 
+use Aedart\React\Demo\Containers\IoC;
 use Illuminate\Support\Facades\App;
 use React\EventLoop\LoopInterface;
 
@@ -56,7 +57,7 @@ trait EventLoop
      */
     public function getDefaultEventLoop()
     {
-        return App::make(LoopInterface::class);
+        return IoC::make(LoopInterface::class);
     }
 
     /**

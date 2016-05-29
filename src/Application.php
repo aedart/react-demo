@@ -1,8 +1,10 @@
 <?php namespace Aedart\React\Demo;
 
+use Aedart\React\Demo\Containers\IoC;
 use Aedart\React\Demo\Traits\EventLoop;
 use Aedart\React\Demo\Traits\ServiceContainer;
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Facade;
 use React\EventLoop\Factory;
 use React\EventLoop\LoopInterface;
@@ -26,7 +28,11 @@ class Application
 
     public function run()
     {
-        print "Hallo world" . PHP_EOL;
+        $loop = $this->getEventLoop();
+
+        // Here we normally would start a Http server
+        // or other service, e.g. sockets... etc.
+        $loop->tick();
     }
 
     /**
@@ -34,12 +40,8 @@ class Application
      */
     protected function initIoC()
     {
-        $container = new Container();
-        $container->setInstance($container);
-
-        Facade::setFacadeApplication($container);
-
-        $container->singleton('app', $container);
+        // Will boot the IoC
+        IoC::getInstance();
     }
 
     /**

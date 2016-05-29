@@ -1,7 +1,7 @@
 <?php namespace Aedart\React\Demo\Traits;
 
+use Aedart\React\Demo\Containers\IoC;
 use Illuminate\Contracts\Container\Container;
-use Illuminate\Support\Facades\App;
 
 /**
  * Trait ServiceContainer
@@ -56,7 +56,7 @@ trait ServiceContainer
      */
     public function getDefaultContainer()
     {
-        return App::getFacadeApplication();
+        return IoC::getInstance()->getContainer();
     }
 
     /**
