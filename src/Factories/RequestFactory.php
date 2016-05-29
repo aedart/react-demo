@@ -38,7 +38,9 @@ class RequestFactory
         }
 
         // We now must bind the current request to the IoC
-        $ioc->singleton(Request::class, $request);
+        $ioc->singleton(Request::class, function($ioc) use ($request){
+            return $request;
+        });
 
         // Finally return it
         return $request;
