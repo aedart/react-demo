@@ -1,5 +1,6 @@
 <?php namespace Aedart\React\Demo\Traits;
 
+use Illuminate\Support\Facades\App;
 use React\EventLoop\LoopInterface;
 
 /**
