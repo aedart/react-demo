@@ -1,7 +1,5 @@
 <?php namespace Aedart\React\Demo\Controllers;
 
-use Aedart\React\Demo\Containers\IoC;
-use Aedart\React\Demo\Contracts\DNS\ResolverContainer;
 use Aedart\React\Demo\Exceptions\NoHostNamesProvidedException;
 use Aedart\React\Demo\Models\DNS;
 
