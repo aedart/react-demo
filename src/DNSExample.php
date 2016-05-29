@@ -34,7 +34,7 @@ class DNSExample extends Application
         foreach($hosts as $host){
 
             //
-            // WHAT THE FRRACKING HELL!!!
+            // WHAT THE FRACKING HELL!!!
             //
             // It appears that the dns->resolve actually returns
             // a promise. However, it is NOT documented at all!
