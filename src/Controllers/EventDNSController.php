@@ -39,7 +39,7 @@ class EventDNSController extends ControllerBase
         }
 
         // Invoke some "heavy" method on model
-        $this->dns->resolveHostNames($hostNames);
+        return $this->dns->resolveHostNames($hostNames);
     }
 
 }

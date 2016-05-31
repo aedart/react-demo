@@ -4,6 +4,8 @@ use Aedart\React\Demo\Providers\DNSEventServiceProvider;
 use Aedart\React\Demo\Routes\EventInputRouter;
 use Aedart\React\Demo\Routes\InputRouter;
 use Aedart\React\Demo\Traits\EventDispatcher;
+use React\Promise\Deferred;
+use React\Stream\Stream;
 
 /**
  * Class EventExample
@@ -24,6 +26,28 @@ class EventExample extends MVCExample
         $service = new DNSEventServiceProvider($this->getContainer());
         $service->register();
         $service->boot($this->getEventDispatcher());
+    }
+
+    public function fileGetContent($filename)
+    {
+        if(!file_exists($filename)){
+            // exception...
+            return;
+        }
+
+        $deferred = new Deferred();
+        $filedata = '';
+        $stream = new Stream(fopen($filename, 'r'), $this->getEventLoop());
+        $stream->on('data', function($data, $stream) use(&$filedata) {
+            $filedata .= $data;
+        });
+        $stream->on('end', function($stream) use($deferred, &$filedata) {
+            $deferred->resolve($filedata);
+        });
+        $stream->on('error', function($error, $stream) use($deferred, &$filedata) {
+            $deferred->reject($error);
+        });
+        return $deferred->promise();
     }
 
     /**

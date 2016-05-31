@@ -39,10 +39,11 @@ class DNSController extends ControllerBase
         }
 
         // Invoke some "heavy" method on model
-        $this->dns->resolveHostNames($hostNames)
+        return $this->dns->resolveHostNames($hostNames)
         ->then(function($hostNames){
             // Assign to view logic... in this case, just output!
             echo 'Done: ' . PHP_EOL . implode(PHP_EOL, $hostNames) . PHP_EOL;
+            return true;
         });
     }
     

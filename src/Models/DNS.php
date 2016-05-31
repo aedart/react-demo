@@ -1,6 +1,7 @@
 <?php namespace Aedart\React\Demo\Models;
 
 use Aedart\React\Demo\Contracts\DNS\ResolverContainer;
+use React\Promise\Deferred;
 use React\Promise\PromiseInterface;
 
 /**
@@ -32,15 +33,18 @@ class DNS
     public function resolveHostNames(array $hostNames)
     {
         $promises = [];
+        $deferred = new Deferred();
 
         foreach($hostNames as $host){
 
             $promises[] = $this->resolveHostName($host);
         }
 
-        return \React\Promise\all($promises)->then(function($hostNames){
-            return $hostNames;
+        \React\Promise\all($promises)->then(function($hostNames) use($deferred) {
+            $deferred->resolve($hostNames);
         });
+
+        return $deferred->promise();
     }
 
     /**

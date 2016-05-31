@@ -30,7 +30,8 @@ class DNSEventServiceProvider extends ServiceProvider
     protected $listen = [
         HostNamesResolved::class => [
             WhenHostNamesResolved::class,
-            WhenAllDone::class
+            WhenAllDone::class,
+            SendToAdmin::class,
         ],
 
         HostResolved::class => [
